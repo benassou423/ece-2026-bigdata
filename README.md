@@ -24,3 +24,4 @@ module, with the exercises and the answers to the questions, are grouped in `lab
 |---|---|---|
 | 03 Object storage | Python project with uv, S3 object storage | [labs/03-object-storage](labs/03-object-storage/README.md) |
 | 04 SQL analytics | SQL analytics with DuckDB | [labs/04-sql-analytics](labs/04-sql-analytics/README.md) |
+| 05 ETL/ELT and medallion architecture | Bronze to silver with dbt and DuckDB | [labs/05-etl-elt-and-medallion-architecture](labs/05-etl-elt-and-medallion-architecture/README.md) |
