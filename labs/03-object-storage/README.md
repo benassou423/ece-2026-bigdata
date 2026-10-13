@@ -41,7 +41,7 @@ Both outputs match the lab: Faker is seeded, so the first user is always `garzaa
 ### Platform notes
 
 - The personal bucket `user-b-assouline-ece` did not exist. It was created from the Data Storage page of the Onyxia portal, as described in the lab.
-- From 2026-10-09 to 2026-10-12, every `PutObject` request on the new bucket returned `500 InternalError` from the SeaweedFS server, with the AWS CLI, `s5cmd` and `s3api`. Reads worked. The issue was fixed on the server side.
+- From 2026-10-09 to 2026-10-12, every `PutObject` request on the new bucket returned `500 InternalError` from the SeaweedFS server, with the AWS CLI, `s5cmd` and `s3api`. Reads worked. Deleting and recreating the empty bucket did not help. The uploads worked again later on 2026-10-12, without any change on the client side.
 - `aws s3 ls` lists the buckets of every user of the platform, not only the personal bucket.
 - The bucket policy is enforced for authenticated users on SeaweedFS: the deletion is denied.
 - The `onyxia-quota` ResourceQuota of the namespace rejects any Pod without a CPU limit (`must specify limits.cpu`). The Job of the lab only defines a memory limit, so no Pod was created and `kubectl wait` timed out. `cpu: 200m` was added to the `limits` of the container.
@@ -50,7 +50,7 @@ Both outputs match the lab: Faker is seeded, so the first user is always `garzaa
 ### Answers to the questions
 
 **Why are the credentials stored in a Secret and not in the ConfigMap?**
-A Secret is the Kubernetes object dedicated to sensitive data. Its access is controlled by separate RBAC rules, so a user allowed to read the ConfigMaps of a namespace is not necessarily allowed to read its Secrets. Its values are not displayed by `kubectl describe`, they can be encrypted at rest in etcd, and they are mounted in a memory filesystem. A ConfigMap is plain configuration, readable by anyone with access to the namespace.
+A Secret is the Kubernetes object dedicated to sensitive data. Its access is controlled by separate RBAC rules, so a user allowed to read the ConfigMaps of a namespace is not necessarily allowed to read its Secrets. Its values are not displayed by `kubectl describe`, and they are mounted in a memory filesystem when used as a volume. Base64 encoding is not encryption: anyone allowed to read the Secret can decode it, which is why its access is restricted and encryption at rest is enabled in production. A ConfigMap is plain, non-sensitive configuration, readable by anyone with access to the namespace.
 
 **The credentials of Onyxia are temporary. What happens if the Job is executed again tomorrow? How would a production platform provide credentials to a Job?**
 The Secret still contains the session token of today: once it expires, the upload fails with an authentication error such as `ExpiredToken` or `InvalidAccessKeyId`, which happened on this platform after a few days. A production platform does not copy credentials into a Secret by hand. The Job runs with a dedicated service account and exchanges its Kubernetes token for short-lived S3 credentials (workload identity, STS `AssumeRoleWithWebIdentity`), or a secret manager such as Vault, through the External Secrets Operator, renews the Secret automatically.
