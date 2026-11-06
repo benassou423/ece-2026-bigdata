@@ -26,3 +26,5 @@ module, with the exercises and the answers to the questions, are grouped in `lab
 | 04 SQL analytics | SQL analytics with DuckDB | [labs/04-sql-analytics](labs/04-sql-analytics/README.md) |
 | 05 ETL/ELT and medallion architecture | Bronze to silver with dbt and DuckDB | [labs/05-etl-elt-and-medallion-architecture](labs/05-etl-elt-and-medallion-architecture/README.md) |
 | 06 Spark introduction | Spark RDD API with PySpark | [labs/06-spark-introduction](labs/06-spark-introduction/README.md) |
+| 07 Spark SQL and DataFrames | Bronze to silver with Spark DataFrames, Parquet and Iceberg | [labs/07-sparksql-and-dataframes](labs/07-sparksql-and-dataframes/README.md) |
+| 08 Iceberg introduction | Explore Iceberg tables with Spark | [labs/08-iceberg-introduction](labs/08-iceberg-introduction/README.md) |
