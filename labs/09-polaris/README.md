@@ -411,5 +411,4 @@ The table has to be registered again at the start of the Trino lab, see the READ
   `lab.silver.users` and `lab.silver.orders` were written again in the Hadoop catalog with the statements of the lab 07
   (`CREATE NAMESPACE IF NOT EXISTS lab.silver`, then `writeTo(...).createOrReplace()` from
   `silver/spark/users.parquet` and `silver/spark/orders.parquet`): one `overwrite` snapshot each, at 12:44:40.
-- **Push.** `git push` asks for the GitHub sign-in of VS Code; it was done at the end of the session, with the commits
-  of the module 10.
+- **Push.** `git push` asks for the GitHub sign-in of VS Code; it was done once the module was committed.
