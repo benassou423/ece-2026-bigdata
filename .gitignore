@@ -13,3 +13,5 @@ logs/
 warehouse/**/data/
 derby.log
 metastore_db/
+polaris/deployment/charts/
+trino/deployment/charts/

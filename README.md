@@ -28,3 +28,5 @@ module, with the exercises and the answers to the questions, are grouped in `lab
 | 06 Spark introduction | Spark RDD API with PySpark | [labs/06-spark-introduction](labs/06-spark-introduction/README.md) |
 | 07 Spark SQL and DataFrames | Bronze to silver with Spark DataFrames, Parquet and Iceberg | [labs/07-sparksql-and-dataframes](labs/07-sparksql-and-dataframes/README.md) |
 | 08 Iceberg introduction | Explore Iceberg tables with Spark | [labs/08-iceberg-introduction](labs/08-iceberg-introduction/README.md) |
+| 09 Polaris | Deploy Polaris with Helm, govern Iceberg tables with Polaris | [labs/09-polaris](labs/09-polaris/README.md) |
+| 10 Trino | Deploy Trino with Helm, silver to gold with Trino, star schema | [labs/10-trino](labs/10-trino/README.md) |
